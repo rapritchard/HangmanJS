@@ -5,8 +5,8 @@ const guessElement = document.querySelector("#guess-count")
 
 const renderGame = function(game){
     puzzleElement.textContent = ""
-    puzzleElement.textContent = game.getPuzzle()
-    guessElement.textContent = game.currentStatus()
+    puzzleElement.textContent = game.puzzle
+    guessElement.textContent = game.statusMessage
 }
 
 const game = new Hangman("Cat", 2)

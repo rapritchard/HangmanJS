@@ -9,7 +9,7 @@ class Hangman{
     }
 
     // Get the current puzzle progress
-    getPuzzle(){
+    get puzzle(){
         let hiddenWord = ""
 
         this.wordToGuess.forEach((letter) => {
@@ -20,6 +20,17 @@ class Hangman{
             }
         })
         return hiddenWord
+    }
+
+    // Updates the current status message
+    get statusMessage(){
+        if(this.status === "failed"){
+            return `Nice try! The word was "${this.wordToGuess.join("")}".`
+        }else if(this.status === "finished"){
+            return "Great work! You guessed the word."
+        }else{
+            return `Guesses left: ${this.attempts}`
+        }
     }
 
     // Let the user make a guess
@@ -48,17 +59,6 @@ class Hangman{
             this.status = "finished"
         }else{
             this.status = "playing"
-        }
-    }
-
-    // Updates the current status message
-    currentStatus(){
-        if(this.status === "failed"){
-            return `Nice try! The word was "${this.wordToGuess.join("")}".`
-        }else if(this.status === "finished"){
-            return "Great work! You guess the word."
-        }else{
-            return `Guesses left: ${this.attempts}`
         }
     }
 }
