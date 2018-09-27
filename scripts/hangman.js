@@ -51,7 +51,7 @@ class Hangman{
 
     // Determines current game status
     calculateStatus(){
-        let finished = this.wordToGuess.every((letter) => this.guessedLetters.includes(letter))
+        let finished = this.wordToGuess.every((letter) => this.guessedLetters.includes(letter) || letter === " ")
 
         if(this.attempts === 0){
             this.status = "failed"
