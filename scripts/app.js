@@ -4,10 +4,37 @@
 // Request - What do we want to do
 // Response - What was actually done 
 
-const puzzleElement = document.querySelector("#puzzle-word")
+const puzzleElement = document.querySelector("#puzzle")
 const guessElement = document.querySelector("#guess-count")
+const wordCountElement = document.querySelector("#word-count")
+
+const wordCountOptions = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+
+wordCountOptions.forEach((option) => {
+    const num = option
+    let numOption = document.createElement("option")
+    numOption.textContent = num
+    numOption.value = num
+    wordCountElement.appendChild(numOption)
+})
 
 let game
+const renderGame = () => {
+    puzzleElement.innerHTML= ""
+    guessElement.textContent = game.statusMessage
+
+    game.puzzle.split("").forEach((letter) => {
+        const letterElement = document.createElement("span")
+        letterElement.textContent = letter
+        puzzleElement.appendChild(letterElement)
+    })
+}
+
+const startGame = async () => {
+    const puzzle = await getPuzzle(wordCountElement.value)
+    game = new Hangman(puzzle, 5)
+    renderGame()
+}
 
 window.addEventListener("keypress", (e) =>{
     const guess = String.fromCharCode(e.charCode)
@@ -15,17 +42,6 @@ window.addEventListener("keypress", (e) =>{
     game.calculateStatus()
     renderGame()
 })
-
-const renderGame = () => {
-    puzzleElement.textContent = game.puzzle
-    guessElement.textContent = game.statusMessage
-}
-
-const startGame = async () => {
-    const puzzle = await getPuzzle("2")
-    game = new Hangman(puzzle, 5)
-    renderGame()
-}
 
 document.querySelector("#reset").addEventListener("click", startGame)
 
