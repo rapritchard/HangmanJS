@@ -29,14 +29,10 @@ getPuzzle("4").then((puzzle) =>{
     console.log(`Error: ${err}`)
 })
 
-getCountry("GB").then((country) =>{
-    console.log(country.name)
-}).catch((err) => {
-    console.log(`Error: ${err}`)
-})
-
 getLocation().then((location) => {
-    console.log(`You are in ${location.city}, ${location.region}, ${location.country}.`)
+    return getCountry(location.country)
+}).then((country) => {
+    console.log(country.name)
 }).catch((err) =>{
     console.log(`Error: ${err}`)
 })
