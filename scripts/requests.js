@@ -1,35 +1,30 @@
 'use strict'
 
-const getPuzzle = (wordCount) => {
-    return fetch(`http://puzzle.mead.io/puzzle?wordCount=${wordCount}`).then((response) => {
-        if(response.status === 200){
-            return response.json()
-        }else{
-            throw new Error("Unable to fetch puzzle.")
-        }
-    }).then((data) => {
+const getPuzzle = async (wordCount) => {
+    const response = await fetch(`http://puzzle.mead.io/puzzle?wordCount=${wordCount}`)
+    if(response.status === 200){
+        const data = await response.json()
         return data.puzzle
-    })
+    }else{
+        throw new Error("Unable to fetch puzzle.")
+    }
 }
 
-const getCountry = (countryCode) => {
-    return fetch("http://restcountries.eu/rest/v2/all").then((response) => {
-        if(response.status === 200){
-            return response.json()
-        }else{
-            throw new Error("Unable to fetch countries.")
-        }
-    }).then((data) =>{
+const getCountry = async (countryCode) => {
+    const response = await fetch("http://restcountries.eu/rest/v2/all")
+    if(response.status === 200){
+        const data = await response.json()
         return data.find((country) => country.alpha2Code === countryCode)
-    })
+    }else{
+        throw new Error("Unable to fetch country details.")
+    }
 }
 
-const getLocation = () => {
-    return fetch("http://ipinfo.io/json?token=717468159353db").then((response) => {
-        if(response.status === 200){
-            return response.json()
-        }else{
-            throw new Error("Unable to fetch location")
-        }
-    })
+const getLocation = async () => {
+    const response = await fetch("http://ipinfo.io/json?token=717468159353db")
+    if(response.status === 200){
+        return response.json()
+    }else{
+        throw new Error("Unable to fetch location data.")
+    }
 }
