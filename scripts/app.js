@@ -6,13 +6,13 @@
 
 const puzzleElement = document.querySelector("#puzzle")
 const guessElement = document.querySelector("#guess-count")
-const wordCountElement = document.querySelector("#word-count")
+const wordCountElement = document.querySelector(".word-count")
 
 const wordCountOptions = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
 wordCountOptions.forEach((option) => {
     const num = option
-    let numOption = document.createElement("option")
+    const numOption = document.createElement("option")
     numOption.textContent = num
     numOption.value = num
     wordCountElement.appendChild(numOption)
