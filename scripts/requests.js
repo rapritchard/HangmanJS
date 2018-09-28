@@ -10,6 +10,11 @@ const getPuzzle = async (wordCount) => {
     }
 }
 
+const getCurrentCountry = async() => {
+    const location = await getLocation()
+    return getCountry(location.country)
+}
+
 const getCountry = async (countryCode) => {
     const response = await fetch("http://restcountries.eu/rest/v2/all")
     if(response.status === 200){
