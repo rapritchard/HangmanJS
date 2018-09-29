@@ -2,7 +2,7 @@
 
 This is a little project made to mess around with JavaScript OOP and Asynchronous JavaScript.
 
-[You can view it here!]()
+[You can view it here!](https://sharp-hoover-54dde8.netlify.com/)
 
 ### APIs
 1. [puzzle.mead.io/puzzle](http://puzzle.mead.io/puzzle) - Generates a random word with a word count argument.
